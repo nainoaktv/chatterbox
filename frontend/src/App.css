@@ -1,1 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
 
+.App {
+  min-height: 100vh;
+  display: flex;
+
+  background: rgb(11, 12, 16);
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(11, 12, 16, 1) 70%,
+    rgba(31, 40, 51, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(11, 12, 16, 1) 70%,
+    rgba(31, 40, 51, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(11, 12, 16, 1) 70%,
+    rgba(31, 40, 51, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0b0c10",endColorstr="#1f2833",GradientType=1);
+
+  color: white;
+}
