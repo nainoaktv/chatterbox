@@ -21,6 +21,10 @@ const Signup = () => {
 
   const handleClick = () => setShow(!show);
 
+  const postDetails = (pics) => {};
+
+  const submitHandler = () => {};
+
   return (
     <VStack spacing={"5px"}>
       <FormControl id="first-name" isRequired>
@@ -66,7 +70,7 @@ const Signup = () => {
             focusBorderColor={primaryColor}
             type={show ? "text" : "password"}
             placeholder="Confirm Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <InputRightElement width={"4.5rem"}>
             <Button h={"1.5rem"} size={"sm"} onClick={handleClick}>
@@ -75,6 +79,26 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+
+      <FormControl id="pic">
+        <FormLabel>Upload Your Picture</FormLabel>
+        <Input
+          focusBorderColor={primaryColor}
+          type="file"
+          p={1.5}
+          accept="image/*"
+          onChange={(e) => postDetails(e.target.value[0])}
+        />
+      </FormControl>
+
+      <Button
+        _hover={{ bg: primaryColor }}
+        width={"100%"}
+        style={{ marginTop: 15 }}
+        onClick={submitHandler}
+      >
+        Sign Up
+      </Button>
     </VStack>
   );
 };
