@@ -9,9 +9,12 @@ import {
   Tabs,
   Tab,
 } from "@chakra-ui/react";
+import Login from "../components/Authentication/Login";
+import Signup from "../components/Authentication/Signup";
 
+// Fonts
 const montSub = "Montserrat Subrayada";
-const montReg = "Montserrat";
+// const montReg = "Montserrat";
 
 const Homepage = () => {
   return (
@@ -55,10 +58,10 @@ const Homepage = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <p fontFamily={montReg}>Welcome Back!</p>
+              <Login />
             </TabPanel>
             <TabPanel>
-              <p fontFamily={montReg}>Sup Newbie Sign Up Here!</p>
+              <Signup />
             </TabPanel>
           </TabPanels>
         </Tabs>
