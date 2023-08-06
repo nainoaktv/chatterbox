@@ -10,6 +10,9 @@ import {
   Tab,
 } from "@chakra-ui/react";
 
+const montSub = "Montserrat Subrayada";
+const montReg = "Montserrat";
+
 const Homepage = () => {
   return (
     <Container maxW="xl" centerContent>
@@ -23,12 +26,7 @@ const Homepage = () => {
         borderWidth={"1px"}
         borderColor={"#45A29E"}
       >
-        <Text
-          color={"#C5C6C7"}
-          fontFamily={"Work sans"}
-          fontSize={"4xl"}
-          textAlign={"center"}
-        >
+        <Text fontFamily={montSub} fontSize={"4xl"} textAlign={"center"}>
           ChatterBox
         </Text>
       </Box>
@@ -42,19 +40,25 @@ const Homepage = () => {
         {/* @TODO: Find information on how to change tabs color theme */}
         <Tabs isFitted variant="enclosed" borderColor={"#66FCF1"}>
           <TabList mb="1em">
-            <Tab _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}>
+            <Tab
+              _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}
+              fontFamily={montSub}
+            >
               LOGIN
             </Tab>
-            <Tab _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}>
+            <Tab
+              _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}
+              fontFamily={montSub}
+            >
               SIGN-UP
             </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
-              <p>WELCOME BACK! 🚀</p>
+              <p fontFamily={montReg}>Welcome Back!</p>
             </TabPanel>
             <TabPanel>
-              <p>SUP NEW CHATTER 😎</p>
+              <p fontFamily={montReg}>Sup Newbie Sign Up Here!</p>
             </TabPanel>
           </TabPanels>
         </Tabs>
