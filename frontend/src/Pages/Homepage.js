@@ -42,8 +42,12 @@ const Homepage = () => {
         {/* @TODO: Find information on how to change tabs color theme */}
         <Tabs isFitted variant="enclosed" borderColor={"#66FCF1"}>
           <TabList mb="1em">
-            <Tab>LOGIN</Tab>
-            <Tab>SIGN-UP</Tab>
+            <Tab _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}>
+              LOGIN
+            </Tab>
+            <Tab _selected={{ color: "#66FCF1", borderColor: "#66FCF1" }}>
+              SIGN-UP
+            </Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
