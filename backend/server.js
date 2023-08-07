@@ -1,19 +1,21 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data");
+const connectDB = require("./config/db");
 
-const app = express();
 dotenv.config();
+const app = express();
+connectDB();
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send("Your API works!");
 });
 
-app.get('/api/chat', (req, res) => {
-  res.send(chats)
+app.get("/api/chat", (req, res) => {
+  res.send(chats);
 });
 
-app.get('/api/chat/:id', (req, res) => {
+app.get("/api/chat/:id", (req, res) => {
   // console.log(req.params.id);
   const singleChat = chats.find((c) => c._id === req.params.id);
   res.send(singleChat);
