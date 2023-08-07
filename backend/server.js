@@ -5,8 +5,11 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 
 dotenv.config();
-const app = express();
+
 connectDB();
+const app = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Your API works!");
