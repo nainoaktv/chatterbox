@@ -6,8 +6,10 @@ import {
   InputGroup,
   InputRightElement,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import axios from "axios";
 
 const primaryColor = "#66FCF1";
 
@@ -18,10 +20,63 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [pic, setPic] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
 
   const handleClick = () => setShow(!show);
 
-  const postDetails = (pics) => {};
+  const postDetails = (pics) => {
+    setLoading(true);
+
+    if (pics === undefined) {
+      toast({
+        title: "Please Select an Image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+
+    if (pics.type !== "image/jpeg" && pics.type !== "image/png") {
+      toast({
+        title: "Please Select a JPEG or PNG Image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "chatterbox");
+      data.append("cloud_name", "nktvsoftware");
+      axios
+        .post("https://api.cloudinary.com/v1_1/nktvsoftware/image/upload", data)
+        .then((response) => {
+          console.log("Cloudinary response:", response);
+          setPic(response.data.url.toString());
+          setLoading(false);
+          toast({
+            title: "Image uploaded successfully!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom",
+          });
+        })
+        .catch((error) => {
+          console.log("Cloudinary error:", error);
+          setLoading(false);
+        });
+    }
+  };
 
   const submitHandler = () => {};
 
@@ -96,6 +151,7 @@ const Signup = () => {
         width={"100%"}
         style={{ marginTop: 15 }}
         onClick={submitHandler}
+        isLoading={loading}
       >
         Sign Up
       </Button>
