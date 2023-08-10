@@ -129,7 +129,17 @@ const Signup = () => {
 
       setLoading(false);
       history.pushState("/chats");
-    } catch (err) {}
+    } catch (err) {
+      toast({
+        title: "Error Occured!",
+        description: err.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
   };
 
   return (
