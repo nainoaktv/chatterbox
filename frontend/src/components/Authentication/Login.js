@@ -7,6 +7,7 @@ import {
   InputGroup,
   InputRightElement,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 
 const primaryColor = "#66FCF1";
@@ -15,10 +16,24 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
 
   const handleClick = () => setShow(!show);
 
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    setLoading(true);
+    if (!email || !password) {
+      toast({
+        title: "Please fill email and password",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
 
   return (
     <VStack spacing={"5px"}>
