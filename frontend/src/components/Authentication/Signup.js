@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const primaryColor = "#66FCF1";
 
@@ -24,11 +24,10 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   const toast = useToast();
-  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = () => setShow(!show);
 
-  // CLOUDINARY ISSUE WHEN UPLOADING CORRECT IMAGE TYPE
   const postDetails = (pics) => {
     setLoading(true);
 
@@ -80,63 +79,62 @@ const Signup = () => {
         });
     }
   };
-  // END OF CODE FOR CLOUDINARY ISSUE
 
   const submitHandler = async () => {
-    // setLoading(true);
-    // if (!name || !email || !password || !confirmPassword) {
-    //   toast({
-    //     title: "Please fill in all required fields",
-    //     status: "warning",
-    //     duration: 5000,
-    //     isClosable: true,
-    //     position: "bottoms",
-    //   });
-    //   setLoading(false);
-    //   return;
-    // }
-    // if (password !== confirmPassword) {
-    //   toast({
-    //     title: "Passwords do not match",
-    //     status: "warning",
-    //     duration: 5000,
-    //     isClosable: true,
-    //     position: "bottoms",
-    //   });
-    //   return;
-    // }
-    // try {
-    //   const config = {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   };
-    //   const { data } = await axios.post(
-    //     "/api/user",
-    //     { name, email, password, pic },
-    //     config
-    //   );
-    //   toast({
-    //     title: "Registration Successfull",
-    //     status: "success",
-    //     duration: 5000,
-    //     isClosable: true,
-    //     position: "bottom",
-    //   });
-    //   localStorage.setItem("userInfo", JSON.stringify(data));
-    //   setLoading(false);
-    //   history.pushState("/chats");
-    // } catch (err) {
-    //   toast({
-    //     title: "Error Occured!",
-    //     description: err.response.data.message,
-    //     status: "error",
-    //     duration: 5000,
-    //     isClosable: true,
-    //     position: "bottom",
-    //   });
-    //   setLoading(false);
-    // }
+    setLoading(true);
+    if (!name || !email || !password || !confirmPassword) {
+      toast({
+        title: "Please fill in all required fields",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottoms",
+      });
+      setLoading(false);
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast({
+        title: "Passwords do not match",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottoms",
+      });
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/user",
+        { name, email, password, pic },
+        config
+      );
+      toast({
+        title: "Registration Successfull",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      navigate.pushState("/chats");
+    } catch (err) {
+      toast({
+        title: "Error Occured!",
+        description: err.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
   };
 
   return (
