@@ -9,6 +9,8 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
+// import { useHistory } from "react-router-dom";
 
 const primaryColor = "#66FCF1";
 
@@ -19,20 +21,35 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const toast = useToast();
+  // const history = useHistory;
 
   const handleClick = () => setShow(!show);
 
   const submitHandler = async () => {
-    setLoading(true);
-    if (!email || !password) {
-      toast({
-        title: "Please fill email and password",
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
-    }
+    // setLoading(true);
+    // if (!email || !password) {
+    //   toast({
+    //     title: "Please fill email and password",
+    //     status: "warning",
+    //     duration: 5000,
+    //     isClosable: true,
+    //     position: "bottom",
+    //   });
+    //   setLoading(false);
+    //   return;
+    // }
+    // try {
+    //   const config = {
+    //     headers: {
+    //       "Content-type": "application/json",
+    //     },
+    //   };
+    //   const { data } = await axios.post(
+    //     "/api/user/login",
+    //     { email, password },
+    //     config
+    //   )
+    // }
   };
 
   return (
