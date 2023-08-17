@@ -81,6 +81,7 @@ const Login = () => {
           focusBorderColor={primaryColor}
           type="email"
           placeholder="chatterbox@gmail.com"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
@@ -92,6 +93,7 @@ const Login = () => {
             focusBorderColor={primaryColor}
             type={show ? "text" : "password"}
             placeholder="Enter your password..."
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width={"4.5rem"}>
