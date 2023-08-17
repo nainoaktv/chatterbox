@@ -57,4 +57,10 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query;
+
+  console.log(keyword);
+});
+
+module.exports = { registerUser, authUser, allUsers };
