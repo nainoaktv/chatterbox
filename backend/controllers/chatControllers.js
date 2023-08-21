@@ -58,4 +58,4 @@ const fetchChats = asyncHandler(async (req, res) => {
   } catch (err) {}
 });
 
-module.exports = { accessChat };
+module.exports = { accessChat, fetchChats };
