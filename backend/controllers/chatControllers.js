@@ -104,4 +104,6 @@ const createGroupChat = asyncHandler(async (req, res) => {
     throw new Error(err.message);
   }
 });
+
+const renameGroup = asyncHandler(async (req, res) => {});
 module.exports = { accessChat, fetchChats, createGroupChat };
