@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { Box, Text } from "@chakra-ui/layout";
-import { Tooltip } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
 
+const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
 const secondaryColor = "#1F2833";
 const greyColor = "#C5C6C7";
@@ -21,7 +32,7 @@ const SideDrawer = () => {
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        bg={secondaryColor}
+        bg={primaryColor}
         w={"100%"}
         p={"5px 10px 5px 10px"}
         borderWidth={"2px"}
@@ -43,6 +54,23 @@ const SideDrawer = () => {
             </Text>
           </Button>
         </Tooltip>
+
+        <Text fontFamily={montSub} fontSize={"4xl"} textAlign={"center"}>
+          ChatterBox
+        </Text>
+        <div>
+          {/* TODO: Resume Menu Feature this is placeholder */}
+          <Menu>
+            <MenuButton as={Button}>Actions</MenuButton>
+            <MenuList>
+              <MenuItem bg={"black"}>Download</MenuItem>
+              <MenuItem>Create a Copy</MenuItem>
+              <MenuItem>Mark as Draft</MenuItem>
+              <MenuItem>Delete</MenuItem>
+              <MenuItem>Attend a Workshop</MenuItem>
+            </MenuList>
+          </Menu>
+        </div>
       </Box>
     </>
   );
