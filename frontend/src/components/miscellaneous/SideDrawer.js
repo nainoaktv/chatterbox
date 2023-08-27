@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import { Box, Text } from "@chakra-ui/layout";
-import {
-  Tooltip,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
+import { Tooltip, Menu, MenuButton } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
+import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { Avatar } from "@chakra-ui/avatar";
+import { ChatState } from "../../Context/ChatProvider";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -25,6 +18,8 @@ const SideDrawer = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState();
+
+  const { user } = ChatState();
 
   return (
     <>
@@ -59,16 +54,21 @@ const SideDrawer = () => {
           ChatterBox
         </Text>
         <div>
-          {/* TODO: Resume Menu Feature this is placeholder */}
           <Menu>
-            <MenuButton as={Button}>Actions</MenuButton>
-            <MenuList>
-              <MenuItem bg={"black"}>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
-            </MenuList>
+            <MenuButton p={1}>
+              <BellIcon fontSize={"2xl"} m={1} />
+            </MenuButton>
+            {/* <MenuList></MenuList> */}
+          </Menu>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              <Avatar
+                size={"sm"}
+                cursor={"pointer"}
+                name={user.name}
+                src={user.pic}
+              />
+            </MenuButton>
           </Menu>
         </div>
       </Box>
