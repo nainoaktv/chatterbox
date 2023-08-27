@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Box, Text } from "@chakra-ui/layout";
-import { Tooltip, Menu, MenuButton } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+} from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
@@ -61,7 +68,11 @@ const SideDrawer = () => {
             {/* <MenuList></MenuList> */}
           </Menu>
           <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton
+              as={Button}
+              bg={blueTwo}
+              rightIcon={<ChevronDownIcon />}
+            >
               <Avatar
                 size={"sm"}
                 cursor={"pointer"}
@@ -69,6 +80,15 @@ const SideDrawer = () => {
                 src={user.pic}
               />
             </MenuButton>
+            <MenuList bg={primaryColor}>
+              <MenuItem style={{ color: blueOne }} bg={primaryColor}>
+                My Profile
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem style={{ color: blueOne }} bg={primaryColor}>
+                Logout
+              </MenuItem>
+            </MenuList>
           </Menu>
         </div>
       </Box>
