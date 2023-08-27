@@ -12,6 +12,7 @@ import { Button } from "@chakra-ui/button";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { ChatState } from "../../Context/ChatProvider";
+import ProfileModal from "./ProfileModal";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -81,9 +82,11 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList bg={primaryColor}>
-              <MenuItem style={{ color: blueOne }} bg={primaryColor}>
-                My Profile
-              </MenuItem>
+              <ProfileModal>
+                <MenuItem style={{ color: blueOne }} bg={primaryColor}>
+                  My Profile
+                </MenuItem>
+              </ProfileModal>
               <MenuDivider />
               <MenuItem style={{ color: blueOne }} bg={primaryColor}>
                 Logout
