@@ -82,7 +82,7 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList bg={primaryColor}>
-              <ProfileModal>
+              <ProfileModal user={user}>
                 <MenuItem style={{ color: blueOne }} bg={primaryColor}>
                   My Profile
                 </MenuItem>
