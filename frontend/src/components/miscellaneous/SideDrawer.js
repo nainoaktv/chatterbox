@@ -14,13 +14,17 @@ import {
   DrawerHeader,
   DrawerBody,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { ChatState } from "../../Context/ChatProvider";
+import ChatLoading from "../ChatLoading";
 import ProfileModal from "./ProfileModal";
+import UserListItem from "../UserAvatar/UserListItem";
 import { useDisclosure } from "@chakra-ui/hooks";
+import axios from "axios";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -35,6 +39,7 @@ const SideDrawer = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState();
 
+  const toast = useToast();
   const { user } = ChatState();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,6 +48,44 @@ const SideDrawer = () => {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
+
+  const handleSearch = async () => {
+    if (!search) {
+      toast({
+        title: "Please Enter something in search",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top-left",
+      });
+    }
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
+
+      setLoading(false);
+      setSearchResult(data);
+    } catch (err) {
+      toast({
+        title: "Error occured1!",
+        description: "Failed to load search results",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+  };
+
+  const accessChat = (userId) => {};
 
   return (
     <>
@@ -132,12 +175,19 @@ const SideDrawer = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button
-              // onClick={handleSearch}
-              >
-                Go
-              </Button>
+              <Button onClick={handleSearch}>Go</Button>
             </Box>
+            {loading ? (
+              <ChatLoading />
+            ) : (
+              searchResult?.map((user) => (
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handlFunction={() => accessChat(user._id)}
+                />
+              ))
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
