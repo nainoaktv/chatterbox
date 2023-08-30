@@ -8,12 +8,17 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { ChatState } from "../../Context/ChatProvider";
 import ProfileModal from "./ProfileModal";
+import { useDisclosure } from "@chakra-ui/hooks";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -30,6 +35,7 @@ const SideDrawer = () => {
 
   const { user } = ChatState();
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
@@ -50,7 +56,12 @@ const SideDrawer = () => {
         borderColor={blueOne}
       >
         <Tooltip label="Search Users to Chat With" hasArrow placement="bottom">
-          <Button variant={"ghost"} bg={blueOne} margin={"5px"}>
+          <Button
+            variant={"ghost"}
+            bg={blueOne}
+            margin={"5px"}
+            onClick={onOpen}
+          >
             <i
               class="fa-solid fa-magnifying-glass"
               style={{ color: secondaryColor }}
@@ -106,6 +117,13 @@ const SideDrawer = () => {
           </Menu>
         </div>
       </Box>
+
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth={"1px"}>Search Users</DrawerHeader>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
