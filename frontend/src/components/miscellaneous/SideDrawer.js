@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Text } from "@chakra-ui/layout";
 import {
   Tooltip,
@@ -28,6 +29,12 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState();
 
   const { user } = ChatState();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
 
   return (
     <>
@@ -88,7 +95,11 @@ const SideDrawer = () => {
                 </MenuItem>
               </ProfileModal>
               <MenuDivider />
-              <MenuItem style={{ color: blueOne }} bg={primaryColor}>
+              <MenuItem
+                style={{ color: blueOne }}
+                bg={primaryColor}
+                onClick={logoutHandler}
+              >
                 Logout
               </MenuItem>
             </MenuList>
