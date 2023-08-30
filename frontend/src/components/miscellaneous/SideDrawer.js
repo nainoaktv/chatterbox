@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box, Text } from "@chakra-ui/layout";
 import {
@@ -17,14 +18,13 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/button";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { ChatState } from "../../Context/ChatProvider";
 import ChatLoading from "../ChatLoading";
 import ProfileModal from "./ProfileModal";
 import UserListItem from "../UserAvatar/UserListItem";
-import { useDisclosure } from "@chakra-ui/hooks";
-import axios from "axios";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -165,17 +165,27 @@ const SideDrawer = () => {
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth={"1px"}>Search Users</DrawerHeader>
+        <DrawerContent bg={secondaryColor}>
+          <DrawerHeader
+            borderBottomWidth={"1px"}
+            color={"white"}
+            fontFamily={"Montserrat"}
+          >
+            Search Users
+          </DrawerHeader>
           <DrawerBody>
             <Box display={"flex"} pb={2}>
               <Input
+                color={"white"}
+                focusBorderColor={blueOne}
                 placeholder="Search by name or email"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button onClick={handleSearch} bg={blueTwo}>
+                Go
+              </Button>
             </Box>
             {loading ? (
               <ChatLoading />
