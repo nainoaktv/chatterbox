@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ChatState } from "../Context/ChatProvider";
 import { useToast } from "@chakra-ui/react";
@@ -18,7 +18,7 @@ const MyChats = () => {
       };
 
       const { data } = await axios.get("/api/chat", config);
-
+      console.log(data);
       setChats(data);
     } catch (err) {
       toast({
@@ -31,6 +31,11 @@ const MyChats = () => {
       });
     }
   };
+
+  useEffect(() => {
+    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+    fetchChats();
+  }, []);
 
   return <div>MyChats</div>;
 };
