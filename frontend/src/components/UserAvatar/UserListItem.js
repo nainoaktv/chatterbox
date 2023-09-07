@@ -1,6 +1,6 @@
-import React from "react";
 import { ChatState } from "../../Context/ChatProvider";
-import { Avatar, Box, Text } from "@chakra-ui/react";
+import { Avatar } from "@chakra-ui/avatar";
+import { Box, Text } from "@chakra-ui/layout";
 
 // color palette
 const primaryColor = "#0B0C10";

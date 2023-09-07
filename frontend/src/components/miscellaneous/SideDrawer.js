@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box, Text } from "@chakra-ui/layout";
@@ -38,10 +38,10 @@ const SideDrawer = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [loadingChat, setLoadingChat] = useState();
+  const [loadingChat, setLoadingChat] = useState(false);
 
+  const { setSelectedChat, user, chats, setChats } = ChatState();
   const toast = useToast();
-  const { user, setSelectedChat, chats, setChats } = ChatState();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -59,6 +59,7 @@ const SideDrawer = () => {
         isClosable: true,
         position: "top-left",
       });
+      return;
     }
 
     try {
@@ -87,6 +88,7 @@ const SideDrawer = () => {
   };
 
   const accessChat = async (userId) => {
+    console.log(userId);
     try {
       setLoadingChat(true);
 
@@ -223,11 +225,11 @@ const SideDrawer = () => {
                 <UserListItem
                   key={user._id}
                   user={user}
-                  handlFunction={() => accessChat(user._id)}
+                  handleFunction={() => accessChat(user._id)}
                 />
               ))
             )}
-            {loadingChat && <Spinner ml={"auto"} display={"flex"} />}
+            {loadingChat && <Spinner ml="auto" display={"flex"} />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
