@@ -73,6 +73,7 @@ const MyChats = () => {
           display={"flex"}
           fontSize={{ base: "17px", md: "10px", lg: "17px" }}
           rightIcon={<AddIcon />}
+          _hover={{ bg: blueOne }}
         >
           New Group Chat
         </Button>
@@ -82,11 +83,12 @@ const MyChats = () => {
         display={"flex"}
         flexDir={"column"}
         p={3}
-        bg={blueOne}
+        bg={primaryColor}
         w={"100%"}
         h={"100%"}
         borderRadius={"lg"}
         overflowY={"hidden"}
+        fontFamily={"Montserrat"}
       >
         {chats ? (
           <Stack overflowY={"scroll"}>
@@ -94,10 +96,8 @@ const MyChats = () => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor={"pointer"}
-                bg={
-                  selectedChat === chat ? { primaryColor } : { secondaryColor }
-                }
-                color={selectedChat === chat ? { blueOne } : { greyColor }}
+                bg={selectedChat === chat ? "white" : secondaryColor}
+                color={selectedChat === chat ? primaryColor : blueOne}
                 px={3}
                 py={2}
                 borderRadius={"lg"}
