@@ -229,7 +229,9 @@ const SideDrawer = () => {
                 />
               ))
             )}
-            {loadingChat && <Spinner ml="auto" display={"flex"} />}
+            {loadingChat && (
+              <Spinner ml="auto" display={"flex"} color="white" />
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
