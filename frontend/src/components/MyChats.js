@@ -9,7 +9,7 @@ import GroupChatModal from "./miscellaneous/GroupChatModal";
 
 const primaryColor = "#0B0C10";
 const secondaryColor = "#1F2833";
-const greyColor = "#C5C6C7";
+const orangeColor = "#ED980C";
 const blueOne = "#66FCF1";
 const blueTwo = "#45A29E";
 
@@ -63,7 +63,7 @@ const MyChats = () => {
         pb={3}
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
-        fontFamily={"Montserrat"}
+        fontFamily={"Roboto Condensed"}
         display={"flex"}
         w={"100%"}
         justifyContent={"space-between"}
@@ -75,7 +75,7 @@ const MyChats = () => {
             display={"flex"}
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
-            _hover={{ bg: blueOne }}
+            _hover={{ bg: orangeColor }}
           >
             New Group Chat
           </Button>
@@ -99,7 +99,7 @@ const MyChats = () => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor={"pointer"}
-                bg={selectedChat === chat ? "white" : secondaryColor}
+                bg={selectedChat === chat ? orangeColor : secondaryColor}
                 color={selectedChat === chat ? primaryColor : blueOne}
                 px={3}
                 py={2}
