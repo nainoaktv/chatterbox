@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
+import UserListItem from "../UserAvatar/UserListItem";
 import axios from "axios";
 
 const primaryColor = "#0B0C10";
@@ -65,7 +66,10 @@ const GroupChatModal = ({ children }) => {
       });
     }
   };
+
   const handleSubmit = () => {};
+
+  const handleGroup = () => {};
 
   return (
     <>
@@ -104,7 +108,19 @@ const GroupChatModal = ({ children }) => {
               />
             </FormControl>
             {/* selected users */}
-            {/* render searched users */}
+            {loading ? (
+              <div>loading</div>
+            ) : (
+              searchResult
+                ?.slice(0, 4)
+                .map((user) => (
+                  <UserListItem
+                    key={user._id}
+                    user={user}
+                    handleFunction={() => handleGroup(user)}
+                  />
+                ))
+            )}
           </ModalBody>
 
           <ModalFooter>
