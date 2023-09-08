@@ -69,7 +69,20 @@ const GroupChatModal = ({ children }) => {
 
   const handleSubmit = () => {};
 
-  const handleGroup = () => {};
+  const handleGroup = (userToAdd) => {
+    if (selectedUsers.includes(userToAdd)) {
+      toast({
+        title: "User already added",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+
+    setSelectedUsers([...selectedUsers, userToAdd]);
+  };
 
   return (
     <>
@@ -107,7 +120,15 @@ const GroupChatModal = ({ children }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            {/* selected users */}
+
+            {selectedUsers.map((u) => (
+              <UserBadgeItem
+                key={user._id}
+                user={u}
+                handleFunction={() => handleDelete}
+              />
+            ))}
+
             {loading ? (
               <div>loading</div>
             ) : (
