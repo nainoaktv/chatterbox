@@ -12,10 +12,12 @@ import {
   useToast,
   FormControl,
   Input,
+  Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserListItem from "../UserAvatar/UserListItem";
+import UserBadgeItem from "../UserAvatar/UserBadgeItem";
 import axios from "axios";
 
 const primaryColor = "#0B0C10";
@@ -68,6 +70,7 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handleSubmit = () => {};
+  const handleDelete = () => {};
 
   const handleGroup = (userToAdd) => {
     if (selectedUsers.includes(userToAdd)) {
@@ -120,15 +123,15 @@ const GroupChatModal = ({ children }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-
-            {selectedUsers.map((u) => (
-              <UserBadgeItem
-                key={user._id}
-                user={u}
-                handleFunction={() => handleDelete}
-              />
-            ))}
-
+            <Box display={"flex"} flexWrap={"wrap"} w={"100%"}>
+              {selectedUsers.map((u) => (
+                <UserBadgeItem
+                  key={user._id}
+                  user={u}
+                  handleFunction={() => handleDelete}
+                />
+              ))}
+            </Box>
             {loading ? (
               <div>loading</div>
             ) : (
