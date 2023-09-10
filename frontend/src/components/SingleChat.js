@@ -32,6 +32,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               onClick={() => setSelectedChat("")}
               _hover={{ bg: orangeColor }}
             />
+            {!selectedChat.isGroupChat ? (
+              <></>
+            ) : (
+              <>
+                {selectedChat.chatName.toUpperCase()}
+                {/* <UpdateGroupChatModal
+                  fetchAgain={fetchAgain}
+                  setFetchAgain={setFetchAgain}
+                /> */}
+              </>
+            )}
           </Text>
         </>
       ) : (
