@@ -2,6 +2,7 @@ import React from "react";
 import { ChatState } from "../Context/ChatProvider";
 import { Box, IconButton, Text } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { getSender } from "../config/ChatLogics";
 
 const primaryColor = "#0B0C10";
 const secondaryColor = "#1F2833";
@@ -33,7 +34,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               _hover={{ bg: orangeColor }}
             />
             {!selectedChat.isGroupChat ? (
-              <></>
+              <>{getSender(user, selectedChat.users)}</>
             ) : (
               <>
                 {selectedChat.chatName.toUpperCase()}
