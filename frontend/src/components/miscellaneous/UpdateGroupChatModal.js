@@ -41,9 +41,107 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
 
   const { selectedChat, setSelectedChat, user } = ChatState();
 
-  const handleRemove = () => {};
+  const handleAddUser = async (user1) => {
+    if (selectedChat.users.find((u) => u._id === user1._id)) {
+      toast({
+        title: "User is already in group!",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
 
-  const handleAddUser = () => {};
+    if (selectedChat.groupAdmin._id !== user._id) {
+      toast({
+        title: "Only Admin can add User to group!",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        "/api/chat/groupadd",
+        {
+          chatId: selectedChat._id,
+          userId: user1._id,
+        },
+        config
+      );
+
+      setSelectedChat(data);
+      setFetchAgain(!fetchAgain);
+      setLoading(false);
+    } catch (err) {
+      toast({
+        title: "Error Occured!",
+        description: err.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
+  const handleRemove = async (user1) => {
+    if (selectedChat.groupAdmin._id !== user._id && user1._id !== user._id) {
+      toast({
+        title: "Only Admin can remove User from group!",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        "/api/chat/groupremove",
+        {
+          chatId: selectedChat._id,
+          userId: user1._id,
+        },
+        config
+      );
+
+      user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
+      setFetchAgain(!fetchAgain);
+      setLoading(false);
+    } catch (err) {
+      toast({
+        title: "Error Occured!",
+        description: err.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
+  };
 
   const handleRename = async () => {
     if (!groupChatName) return;
@@ -105,11 +203,11 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
     } catch (err) {
       toast({
         title: "Error Occured!",
-        description: "Failed to load search results",
+        description: err.response.data.message,
         status: "error",
         duration: 5000,
         isClosable: true,
-        position: "bottom-left",
+        position: "bottom",
       });
     }
   };
