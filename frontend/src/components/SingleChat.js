@@ -14,6 +14,7 @@ import { getSender, getSenderFull } from "../config/ChatLogics";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import axios from "axios";
+import "./styles.css";
 
 const primaryColor = "#0B0C10";
 const secondaryColor = "#1F2833";
@@ -160,7 +161,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 margin={"auto"}
               />
             ) : (
-              <>{/* Messages */}</>
+              <div className="messages">{/* Messages */}</div>
             )}
             <FormControl onKeyDown={sendMessage} isRequired mt={3}>
               <Input
