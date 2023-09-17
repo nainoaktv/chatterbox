@@ -12,11 +12,13 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
+import UserListItem from "../UserAvatar/UserListItem";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem";
 import axios from "axios";
 
@@ -40,6 +42,8 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat, setSelectedChat, user } = ChatState();
 
   const handleRemove = () => {};
+
+  const handleAddUser = () => {};
 
   const handleRename = async () => {
     if (!groupChatName) return;
@@ -80,7 +84,35 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
     setGroupChatName("");
   };
 
-  const handleSearch = () => {};
+  const handleSearch = async (query) => {
+    setSearch(query);
+    if (!query) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      setLoading(false);
+      setSearchResult(data);
+    } catch (err) {
+      toast({
+        title: "Error Occured!",
+        description: "Failed to load search results",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+  };
 
   return (
     <>
@@ -138,11 +170,26 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
+            {loading ? (
+              <Spinner size={"lg"} />
+            ) : (
+              searchResult?.map((user) => (
+                <UserListItem
+                  key={user._id}
+                  user={user}
+                  handleFunction={() => handleAddUser(user)}
+                />
+              ))
+            )}
           </ModalBody>
 
           <ModalFooter>
-            <Button _hover={{ bg: blueOne }} mr={3} onClick={onClose}>
-              Close
+            <Button
+              onClick={() => handleRemove(user)}
+              _hover={{ bg: orangeColor }}
+              mr={3}
+            >
+              Leave Group
             </Button>
           </ModalFooter>
         </ModalContent>
