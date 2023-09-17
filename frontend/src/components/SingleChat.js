@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
-import { Box, IconButton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  IconButton,
+  Input,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFull } from "../config/ChatLogics";
 import ProfileModal from "./miscellaneous/ProfileModal";
@@ -13,7 +20,15 @@ const blueOne = "#66FCF1";
 const blueTwo = "#45A29E";
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [newMessage, setNewMessage] = useState();
+
   const { user, selectedChat, setSelectedChat } = ChatState();
+
+  const sendMessage = () => {};
+
+  const typingHandler = () => {};
 
   return (
     <>
@@ -61,7 +76,27 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             borderRadius={"lg"}
             overflow={"hidden"}
           >
-            {/* Messages here */}
+            {loading ? (
+              <Spinner
+                size={"xl"}
+                w={20}
+                h={20}
+                alignSelf={"center"}
+                margin={"auto"}
+              />
+            ) : (
+              <>{/* Messages */}</>
+            )}
+            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
+              <Input
+                variant={"filled"}
+                bg={secondaryColor}
+                placeholder="Type message..."
+                focusBorderColor={blueOne}
+                onChange={typingHandler}
+                value={newMessage}
+              />
+            </FormControl>
           </Box>
         </>
       ) : (
