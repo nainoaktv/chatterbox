@@ -26,6 +26,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import ChatLoading from "../ChatLoading";
 import ProfileModal from "./ProfileModal";
 import UserListItem from "../UserAvatar/UserListItem";
+import { getSender } from "../../config/ChatLogics";
 
 const montSub = "Montserrat Subrayada";
 const primaryColor = "#0B0C10";
@@ -40,7 +41,14 @@ const SideDrawer = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
 
-  const { setSelectedChat, user, chats, setChats } = ChatState();
+  const {
+    setSelectedChat,
+    user,
+    chats,
+    setChats,
+    notification,
+    setNotification,
+  } = ChatState();
   const toast = useToast();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -159,7 +167,22 @@ const SideDrawer = () => {
             <MenuButton p={1}>
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
-            {/* <MenuList></MenuList> */}
+            <MenuList color={"black"} pl={2}>
+              {!notification.length && "No New Messages"}
+              {notification.map((noti) => (
+                <MenuItem
+                  key={noti._id}
+                  onClick={() => {
+                    setSelectedChat(noti.chat);
+                    setNotification(notification.filter((n) => n !== noti));
+                  }}
+                >
+                  {noti.chat.isGroupChat
+                    ? `New Message in ${noti.chat.chatName}`
+                    : `New Message from ${getSender(user, noti.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton
