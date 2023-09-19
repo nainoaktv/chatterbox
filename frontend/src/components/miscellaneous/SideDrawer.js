@@ -18,6 +18,7 @@ import {
   useToast,
   Spinner,
 } from "@chakra-ui/react";
+import NotificationBadge, { Effect } from "react-notification-badge";
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
@@ -165,6 +166,10 @@ const SideDrawer = () => {
         <div>
           <Menu>
             <MenuButton p={1}>
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+              />
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
             <MenuList color={"black"} pl={2}>
