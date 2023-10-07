@@ -18,33 +18,33 @@ Other:
 
 <img width="1406" alt="ChatterBox App Screenshot" src="https://github.com/nainoaktv/chatterbox/assets/105531873/df0e8e39-5638-4eab-be91-27cc5c3253e6">
 
-## Features
+# Features
 
-### User Authentication with JWT Token
+## User Authentication with JWT Token:
 
 Chatterbox ensures secure user authentication using JWT tokens. Users must log in or sign up with a valid email and password combination to access the chat application.
 
-### Profile Picture Upload
+## Profile Picture Upload:
 
 During the account creation process, users can upload a profile picture in JPEG or PNG format. This personalizes their profile and adds a visual touch to their messages.
 
-### User Search
+## User Search:
 
 Chatterbox makes it easy to find other users by allowing you to search for them using their email or name. This feature simplifies the process of starting one-on-one chats or creating group chats.
 
-### Group Chat Administration
+## Group Chat Administration:
 
 Group chat admins have additional privileges in Chatterbox. They can remove users from the group chat, name the group chats, and rename them as needed. This helps in managing and customizing group conversations.
 
-### Typing Animation
+## Typing Animation:
 
 The application includes a feature that displays typing animations in real time. When a user starts typing a message, others in the chat can see it happening, creating a dynamic and interactive chatting environment.
 
-### Future Development
+## Future Development:
 
 Currently, Chatterbox does not support sending images during chats. However, this is a potential area for future development and enhancement.
 
-### Contributing & Installation
+## Contributing & Installation:
 Contributions to Chatterbox are welcome! If you'd like to contribute, please fork the repository and create a pull request. Please ensure that your code follows the project's coding guidelines.
 
 1. Clone the repo:
