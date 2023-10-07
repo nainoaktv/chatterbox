@@ -10,6 +10,12 @@ Stack:
 ![nodedotjs](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&style=for-the-badge)
 ![ChakraUI](https://img.shields.io/badge/ChakraUI-chakraui?logo=chakraui&labelColor=white&color=teal)
 
+Deployment:
+![Render](https://img.shields.io/badge/Render-render?logo=render&logoColor=%2346E3B7&labelColor=grey&color=grey)
+
+Other:
+![Socket.io](https://img.shields.io/badge/Socket.io-socketdotio?logo=socketdotio&logoColor=%23010101&labelColor=white&color=black)
+
 <img width="1406" alt="ChatterBox App Screenshot" src="https://github.com/nainoaktv/chatterbox/assets/105531873/df0e8e39-5638-4eab-be91-27cc5c3253e6">
 
 ## Features
