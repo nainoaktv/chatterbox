@@ -51,15 +51,18 @@ Contributions to Chatterbox are welcome! If you'd like to contribute, please for
 ```
 $ git clone https://github.com/nainoaktv/chatterbox.git
 ```
+
 2. Navigate to project directory:
 ```
 $ cd chatterbox
 ```
+
 3. Install the required dependencies:
 ```
 $ npm install
 ```
+
 4. Start the development server:
 ```
-npm start
+$ npm start
 ```
