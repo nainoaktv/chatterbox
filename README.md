@@ -2,6 +2,12 @@
 
 Chatterbox is a real-time chat application that allows users to engage in one-on-one and group chats. It provides a seamless chat experience with features like user authentication using JWT tokens, profile picture uploads, searching for users by email or name, admin controls for group chats, real-time typing animations, and chat functionality powered by Socket.io.
 
+## Technologies Used
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white&style=for-the-badge)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white&style=for-the-badge)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB&style=for-the-badge)
+![nodedotjs](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&style=for-the-badge)
+
 <img width="1406" alt="ChatterBox App Screenshot" src="https://github.com/nainoaktv/chatterbox/assets/105531873/df0e8e39-5638-4eab-be91-27cc5c3253e6">
 
 ## Features
