@@ -43,3 +43,23 @@ The application includes a feature that displays typing animations in real time.
 ### Future Development
 
 Currently, Chatterbox does not support sending images during chats. However, this is a potential area for future development and enhancement.
+
+### Contributing & Installation
+Contributions to Chatterbox are welcome! If you'd like to contribute, please fork the repository and create a pull request. Please ensure that your code follows the project's coding guidelines.
+
+1. Clone the repo:
+```
+$ git clone https://github.com/nainoaktv/chatterbox.git
+```
+2. Navigate to project directory:
+```
+$ cd chatterbox
+```
+3. Install the required dependencies:
+```
+$ npm install
+```
+4. Start the development server:
+```
+npm start
+```
